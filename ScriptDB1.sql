@@ -1,13 +1,14 @@
 CREATE TABLE IF NOT EXISTS Artists (
     id SERIAL PRIMARY KEY,
-    Name VARCHAR(40) NOT NULL
+    artists_name VARCHAR(40) NOT NULL
+	genre_id INTEGER REFERENCES genre_id
 );
 
 
 CREATE TABLE IF NOT EXISTS Albums (
     id SERIAL PRIMARY KEY,
 	Artistid INTEGER REFERENCES Artists(id),
-	Name VARCHAR(60) NOT NULL,
+	albums_name VARCHAR(60) NOT NULL,
 	Creation DATE NOT NULL
 );
 
@@ -15,13 +16,12 @@ CREATE TABLE IF NOT EXISTS Albums (
 CREATE TABLE IF NOT EXISTS Tracks (
 	id SERIAL PRIMARY KEY,
 	Albumid INTEGER REFERENCES Albums(id),
-	Name VARCHAR(40) NOT NULL,
+	tracks_name VARCHAR(40) NOT NULL,
 	Length_track NUMERIC(3,2) NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS Genres (
 	id SERIAL PRIMARY KEY,
-	Artistid INTEGER REFERENCES Artists(id),
-	Name VARCHAR(40) NOT NULL unique
+	genres_name VARCHAR(40) NOT NULL unique
 );
